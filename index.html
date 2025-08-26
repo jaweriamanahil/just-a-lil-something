@@ -16,6 +16,10 @@
             background: linear-gradient(135deg, #f5f5dc 0%, #ffe4e1 25%, #f0f8ff 50%, #f8f8ff 75%, #fff0f5 100%);
             min-height: 100vh;
             overflow-x: hidden;
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+            text-size-adjust: 100%;
+            touch-action: manipulation;
         }
 
         .container {
@@ -184,45 +188,9 @@
             animation: pulse 2s ease-in-out infinite;
         }
 
-        .back-btn {
-            background: rgba(255, 182, 193, 0.3);
-            border: 2px solid rgba(255, 182, 193, 0.5);
-            border-radius: 25px;
-            padding: 10px 20px;
-            color: #8b4513;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-bottom: 2rem;
-            backdrop-filter: blur(10px);
-        }
 
-        .back-btn:hover {
-            background: rgba(255, 182, 193, 0.4);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 182, 193, 0.3);
-        }
 
-        .polaroid-btn {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: linear-gradient(135deg, #4ecdc4, #44a08d);
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 25px;
-            font-size: 1rem;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(78, 205, 196, 0.3);
-            transition: all 0.3s ease;
-            z-index: 1000;
-        }
 
-        .polaroid-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(78, 205, 196, 0.4);
-        }
 
         .balloon {
             position: fixed;
@@ -248,14 +216,22 @@
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(20px);
             border-radius: 25px;
-            padding: 30px;
+            padding: 25px 30px;
             border: 3px solid rgba(255, 107, 107, 0.3);
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            max-width: 350px;
+            max-width: 380px;
+            min-width: 320px;
             z-index: 1000;
             animation: wishCardPop 0.5s ease-out;
             text-align: center;
             color: #333;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            line-height: 1.6;
+            height: auto;
+            min-height: fit-content;
+            max-height: 80vh;
+            overflow-y: auto;
         }
 
         .birthday-wish-card h3 {
@@ -270,6 +246,9 @@
             line-height: 1.6;
             margin-bottom: 0;
             color: #555;
+            white-space: normal;
+            word-break: normal;
+            hyphens: auto;
         }
 
         @keyframes wishCardPop {
@@ -301,6 +280,40 @@
         @keyframes pulse {
             0%, 100% { opacity: 0.8; }
             50% { opacity: 1; }
+        }
+
+        .back-icon {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+            color: white;
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            font-size: 1.8rem;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: iconBounce 2s ease-in-out infinite;
+        }
+
+        .back-icon:hover {
+            transform: scale(1.1) rotate(-10deg);
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+            animation: none;
+        }
+
+        @keyframes iconBounce {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            25% { transform: scale(1.05) rotate(5deg); }
+            50% { transform: scale(1.1) rotate(-3deg); }
+            75% { transform: scale(1.05) rotate(2deg); }
         }
 
         .balloon-1 {
@@ -363,14 +376,22 @@
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(20px);
             border-radius: 25px;
-            padding: 30px;
+            padding: 25px 30px;
             border: 3px solid rgba(255, 107, 107, 0.3);
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            max-width: 350px;
+            max-width: 380px;
+            min-width: 320px;
             z-index: 1000;
             animation: wishCardPop 0.5s ease-out;
             text-align: center;
             color: #333;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            line-height: 1.6;
+            height: auto;
+            min-height: fit-content;
+            max-height: 90vh;
+            overflow-y: auto;
         }
 
         .gift-wish-card h3 {
@@ -385,6 +406,14 @@
             line-height: 1.6;
             margin-bottom: 0;
             color: #555;
+            white-space: normal;
+            word-break: normal;
+            hyphens: auto;
+        }
+
+        
+        .gift-wish-card.wish-card-fade-out {
+            animation: wishCardFadeOut 0.5s ease-in forwards;
         }
 
         .gift-box-1 {
@@ -400,6 +429,8 @@
             animation-delay: 4s;
             animation-duration: 10s;
         }
+
+
 
         @keyframes giftBoxFloat {
             0%, 100% { 
@@ -418,31 +449,349 @@
 
 
 
-        /* Mobile Responsiveness */
+        
         @media (max-width: 768px) {
+            body {
+                overflow-x: hidden;
+            }
+
+            .container {
+                padding: 15px !important;
+                min-height: 100vh;
+            }
+
+            .title {
+                font-size: clamp(1.5rem, 6vw, 3rem) !important;
+                margin-bottom: 1.5rem !important;
+            }
+
+            .birthday-title {
+                max-width: 600px !important;
+                margin-bottom: 0.8rem !important;
+            }
+
+            .letter-row {
+                gap: 2px !important;
+            }
+
+            .letter-block {
+                width: 50px !important;
+                height: 50px !important;
+                font-size: 1.8rem !important;
+            }
+
+            .to-you {
+                font-size: 2rem !important;
+                margin-top: 0.4rem !important;
+            }
+
             .cake-image {
-                width: 400px;
+                width: 400px !important;
+                max-width: 85vw !important;
+            }
+
+            .balloon {
+                width: 280px !important;
+            }
+
+            .gift-box {
+                width: 100px !important;
+            }
+
+            .birthday-wish-card,
+            .gift-wish-card {
+                max-width: 320px !important;
+                min-width: 280px !important;
+                padding: 20px 25px !important;
+                left: 50% !important;
+                transform: translateX(-50%) !important;
+                position: fixed !important;
+            }
+
+            .birthday-wish-card h3,
+            .gift-wish-card h3 {
+                font-size: 1.3rem !important;
+            }
+
+            .birthday-wish-card p,
+            .gift-wish-card p {
+                font-size: 1rem !important;
+            }
+
+            .back-icon {
+                width: 50px !important;
+                height: 50px !important;
+                font-size: 1.5rem !important;
+                top: 15px !important;
+                left: 15px !important;
+            }
+
+            .balloon-1 { top: 10% !important; left: 5% !important; }
+            .balloon-2 { top: 20% !important; right: 5% !important; }
+            .balloon-3 { bottom: 15% !important; left: 15% !important; }
+
+            .gift-box-1 { bottom: 10% !important; left: 5% !important; }
+            .gift-box-2 { bottom: 20% !important; right: 5% !important; }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 10px !important;
+            }
+
+            .title {
+                font-size: clamp(1.2rem, 5vw, 2.5rem) !important;
+                margin-bottom: 1rem !important;
+            }
+
+            .birthday-title {
+                max-width: 400px !important;
+                margin-bottom: 0.6rem !important;
+            }
+
+            .letter-row {
+                gap: 1px !important;
+            }
+
+            .letter-block {
+                width: 40px !important;
+                height: 40px !important;
+                font-size: 1.5rem !important;
+            }
+
+            .to-you {
+                font-size: 1.6rem !important;
+                margin-top: 0.3rem !important;
+            }
+
+            .cake-image {
+                width: 300px !important;
+                max-width: 80vw !important;
+            }
+
+            .balloon {
+                width: 220px !important;
+            }
+
+            .gift-box {
+                width: 80px !important;
+            }
+
+            .birthday-wish-card,
+            .gift-wish-card {
+                max-width: 280px !important;
+                min-width: 250px !important;
+                padding: 18px 22px !important;
+                left: 50% !important;
+                transform: translateX(-50%) !important;
+                position: fixed !important;
+            }
+
+            .birthday-wish-card h3,
+            .gift-wish-card h3 {
+                font-size: 1.2rem !important;
+            }
+
+            .birthday-wish-card p,
+            .gift-wish-card p {
+                font-size: 0.95rem !important;
+            }
+
+            .back-icon {
+                width: 45px !important;
+                height: 45px !important;
+                font-size: 1.3rem !important;
+                top: 12px !important;
+                left: 12px !important;
+            }
+
+            .balloon-1 { top: 8% !important; left: 3% !important; }
+            .balloon-2 { top: 18% !important; right: 3% !important; }
+            .balloon-3 { bottom: 12% !important; left: 12% !important; }
+
+            .gift-box-1 { bottom: 8% !important; left: 3% !important; }
+            .gift-box-2 { bottom: 18% !important; right: 3% !important; }
+        }
+
+        @media (max-width: 360px) {
+            .container {
+                padding: 8px !important;
+            }
+
+            .title {
+                font-size: clamp(1rem, 4vw, 2rem) !important;
+                margin-bottom: 0.8rem !important;
+            }
+
+            .birthday-title {
+                max-width: 320px !important;
+                margin-bottom: 0.5rem !important;
+            }
+
+            .letter-row {
+                gap: 0px !important;
+            }
+
+            .letter-block {
+                width: 35px !important;
+                height: 35px !important;
+                font-size: 1.3rem !important;
+            }
+
+            .to-you {
+                font-size: 1.4rem !important;
+                margin-top: 0.25rem !important;
+            }
+
+            .cake-image {
+                width: 250px !important;
+                max-width: 75vw !important;
+            }
+
+            .balloon {
+                width: 180px !important;
+            }
+
+            .gift-box {
+                width: 70px !important;
+            }
+
+            .birthday-wish-card,
+            .gift-wish-card {
+                max-width: 250px !important;
+                min-width: 220px !important;
+                padding: 15px 20px !important;
+                left: 50% !important;
+                transform: translateX(-50%) !important;
+                position: fixed !important;
+            }
+
+            .birthday-wish-card h3,
+            .gift-wish-card h3 {
+                font-size: 1.1rem !important;
+            }
+
+            .birthday-wish-card p,
+            .gift-wish-card p {
+                font-size: 0.9rem !important;
+            }
+
+            .back-icon {
+                width: 40px !important;
+                height: 40px !important;
+                font-size: 1.1rem !important;
+                top: 10px !important;
+                left: 10px !important;
+            }
+
+            .balloon-1 { top: 5% !important; left: 2% !important; }
+            .balloon-2 { top: 15% !important; right: 2% !important; }
+            .balloon-3 { bottom: 10% !important; left: 10% !important; }
+
+            .gift-box-1 { bottom: 5% !important; left: 2% !important; }
+            .gift-box-2 { bottom: 15% !important; right: 2% !important; }
+        }
+
+        
+        @media (max-height: 500px) and (orientation: landscape) {
+            .container {
+                padding: 10px !important;
+            }
+
+            .birthday-title {
+                margin-bottom: 0.5rem !important;
+            }
+
+            .letter-block {
+                width: 35px !important;
+                height: 35px !important;
+                font-size: 1.3rem !important;
+            }
+
+            .to-you {
+                font-size: 1.4rem !important;
+                margin-top: 0.2rem !important;
+            }
+
+            .cake-image {
+                width: 200px !important;
+            }
+
+            .balloon {
+                width: 150px !important;
+            }
+
+            .gift-box {
+                width: 60px !important;
+            }
+
+            .birthday-wish-card,
+            .gift-wish-card {
+                max-width: 250px !important;
+                min-width: 220px !important;
+                padding: 15px 20px !important;
+            }
+        }
+
+        
+        @media (max-width: 768px) {
+            .letter-block {
+                transform: rotate(var(--rotation)) translate(var(--offset-x), var(--offset-y)) scale(0.8) !important;
+            }
+
+            .birthday-title {
+                transform: scale(0.9) !important;
+            }
+
+            .to-you {
+                transform: scale(0.9) !important;
             }
         }
 
         @media (max-width: 480px) {
-            .cake-image {
-                width: 300px;
+            .letter-block {
+                transform: rotate(var(--rotation)) translate(var(--offset-x), var(--offset-y)) scale(0.7) !important;
+            }
+
+            .birthday-title {
+                transform: scale(0.8) !important;
+            }
+
+            .to-you {
+                transform: scale(0.8) !important;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .letter-block {
+                transform: rotate(var(--rotation)) translate(var(--offset-x), var(--offset-y)) scale(0.6) !important;
+            }
+
+            .birthday-title {
+                transform: scale(0.7) !important;
+            }
+
+            .to-you {
+                transform: scale(0.7) !important;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Floating Balloons -->
+   
             <img src="images/ea9592e8-0557-4c77-b3b3-834a43241125.png" alt="Balloon" class="balloon balloon-1">
         <img src="images/ea9592e8-0557-4c77-b3b3-834a43241125.png" alt="Balloon" class="balloon balloon-2">
         <img src="images/ea9592e8-0557-4c77-b3b3-834a43241125.png" alt="Balloon" class="balloon balloon-3">
     
-    <!-- Decorative Gift Boxes -->
+   
             <img src="images/gift box.png" alt="Gift Box" class="gift-box gift-box-1">
         <img src="images/gift box.png" alt="Gift Box" class="gift-box gift-box-2">
     
-    <div class="container">
+    
+
+        <div class="container">
+        <button class="back-icon" onclick="goBack()">😸</button>
+        
         <div class="birthday-title">
             <div class="letter-row">
                 <div class="letter-block h">H</div>
@@ -464,10 +813,10 @@
                 <div class="letter-block y2">Y</div>
             </div>
             <div class="to-you">to you!</div>
+            <div class="to-you">Dear Sameed ❤️</div>
         </div>
         
-        <button class="back-btn" onclick="goBack()">← Back to Welcome</button>
-        <button class="polaroid-btn" onclick="goToPolaroids()">📸 Photo Gallery</button>
+
         
         <div class="cake-container" onclick="createConfetti()">
             <img src="images/cake 2.png" alt="Birthday Cake" class="cake-image">
@@ -490,7 +839,7 @@
                     
                     document.body.appendChild(confetti);
                     
-                    // Remove confetti after animation
+                    
                     setTimeout(() => {
                         if (confetti.parentNode) {
                             confetti.parentNode.removeChild(confetti);
@@ -500,7 +849,7 @@
             }
         }
 
-        // Auto-confetti every 15 seconds
+        
         setInterval(() => {
             if (Math.random() > 0.7) { // 30% chance
                 createConfetti();
@@ -509,61 +858,72 @@
 
 
 
+
+
+
+
+       
+        document.addEventListener('DOMContentLoaded', () => {
+            const balloons = document.querySelectorAll('.balloon');
+            
+            balloons.forEach((balloon, index) => {
+                balloon.addEventListener('click', (e) => {
+                    e.stopPropagation(); 
+                    showBirthdayWish(index);
+                });
+            });
+
+            const giftBoxes = document.querySelectorAll('.gift-box');
+            giftBoxes.forEach((giftBox, index) => {
+                giftBox.addEventListener('click', (e) => {
+                    e.stopPropagation(); 
+                    showGiftWish(index);
+                });
+            });
+
+            
+            document.addEventListener('click', (e) => {
+                
+                if (!e.target.closest('.birthday-wish-card') && 
+                    !e.target.closest('.gift-wish-card') && 
+                    !e.target.closest('.balloon') && 
+                    !e.target.closest('.gift-box')) {
+                    closeAllCards();
+                }
+            });
+
+           
+            window.addEventListener('resize', () => {
+              
+                const wishCard = document.querySelector('.birthday-wish-card');
+                const giftCard = document.querySelector('.gift-wish-card');
+                
+                if (wishCard && window.innerWidth <= 768) {
+                    wishCard.style.left = '50%';
+                    wishCard.style.transform = 'translate(-50%, -50%)';
+                    wishCard.style.top = '50%';
+                }
+                
+                if (giftCard && window.innerWidth <= 768) {
+                    giftCard.style.left = '50%';
+                    giftCard.style.transform = 'translate(-50%, -50%)';
+                    giftCard.style.top = '50%';
+                }
+            });
+        });
+
         function goBack() {
-            // Add transition effect
+           
             document.body.style.transition = 'opacity 0.5s ease-out';
             document.body.style.opacity = '0';
             
-            // Go back to landing page
+           
             setTimeout(() => {
                 window.location.href = 'landing.html';
             }, 500);
         }
 
-        function goToPolaroids() {
-            // Add transition effect
-            document.body.style.transition = 'opacity 0.5s ease-out';
-            document.body.style.opacity = '0';
-            
-            // Go to Polaroid gallery
-            setTimeout(() => {
-                window.location.href = 'polaroids.html';
-            }, 500);
-        }
-
-        // Balloon and gift box click functionality
-        document.addEventListener('DOMContentLoaded', () => {
-            const balloons = document.querySelectorAll('.balloon');
-            
-            balloons.forEach((balloon, index) => {
-                balloon.addEventListener('click', () => showBirthdayWish(index));
-            });
-
-            const giftBoxes = document.querySelectorAll('.gift-box');
-            giftBoxes.forEach((giftBox, index) => {
-                giftBox.addEventListener('click', () => showGiftWish(index));
-            });
-        });
-
-        function showBirthdayWish(balloonIndex) {
-            const wishes = [
-                {
-                    title: "🎂 Sweet Birthday Wishes! 🎂",
-                message: "May your day be filled with endless joy, sweet surprises, and all the happiness your heart can hold!"
-                },
-                {
-                    title: "✨ Magical Birthday! ✨",
-                    message: "Here's to a birthday that's as amazing and special as you are. May all your dreams come true!"
-                },
-                {
-                    title: "🎉 Epic Birthday Celebration! 🎉",
-                    message: "Wishing you a birthday that's absolutely spectacular, filled with love, laughter, and unforgettable moments!"
-                }
-            ];
-
-            const wish = wishes[balloonIndex];
-            
-            // Remove any existing cards (both types)
+        function closeAllCards() {
             const existingWishCard = document.querySelector('.birthday-wish-card');
             const existingGiftCard = document.querySelector('.gift-wish-card');
             
@@ -584,25 +944,78 @@
                     }
                 }, 500);
             }
+        }
 
-            // Create new wish card
+        function showBirthdayWish(balloonIndex) {
+            const wishes = [
+                {
+                    title: "🌼 Happy Birthday, my sunshine 🌼",
+                    message: "Even from far away, I hope you feel the warmth of my love wrapping around you today. You've given me countless reasons to smile, and on your day, I just want you to feel how deeply cherished you are. May this year bring you the same comfort, laughter, and light that you constantly bring into my life."
+                },
+                {
+                    title: "💫 My favorite human 💫",
+                    message: "If I were there right now, I'd be wrapping you up in the tightest hug and not letting go until you complained (and even then, I still wouldn't). I'd cover you in a thousand kisses just to remind you how much you mean to me, and probably laugh at your face while you pretend to be annoyed. Distance might be stopping my arms, but it can't stop my love, it's still hugging you right now."
+                },
+                {
+                    title: "💫 My forever 💫",
+                    message: "You know what I wish for you today? A lifetime of happiness where you'll never have to wonder if you're loved, because I'll spend every single day proving it to you. I may not write poems the way you do or pull off grand gestures, but my heart belongs only to you and that's the truest gift I'll ever have to give. There's something so magical about you how your presence makes life safer, softer, and more alive. No matter how many birthdays come and go, you'll always be the wish I'll never stop making. Distance may steal moments, but it will never steal what we are. You are my once-in-a-lifetime kind of love, my safe place, my favorite person and I'll keep choosing you, over and over, in every lifetime."
+                }
+            ];
+
+            const wish = wishes[balloonIndex];
+            
+            
+            closeAllCards();
+
+        
             const wishCard = document.createElement('div');
             wishCard.className = 'birthday-wish-card';
+            
+            
+            if (balloonIndex === 2) {
+                wishCard.style.maxWidth = '750px';
+                wishCard.style.minWidth = '700px';
+                wishCard.style.maxHeight = '90vh';
+                wishCard.style.overflowY = 'auto';
+            }
+            
             wishCard.innerHTML = `
                 <h3>${wish.title}</h3>
                 <p>${wish.message}</p>
             `;
 
-            // Position the card near the clicked balloon
             const balloon = document.querySelectorAll('.balloon')[balloonIndex];
             const balloonRect = balloon.getBoundingClientRect();
             
-            wishCard.style.left = (balloonRect.left + balloonRect.width / 2 - 175) + 'px';
-            wishCard.style.top = (balloonRect.top + balloonRect.height / 2 - 100) + 'px';
+            
+            if (window.innerWidth <= 768) {
+                
+                wishCard.style.left = '50%';
+                wishCard.style.transform = 'translateX(-50%)';
+                wishCard.style.top = '50%';
+                wishCard.style.transform = 'translate(-50%, -50%)';
+            } else {
+               
+                if (balloonIndex === 2) {
+                    wishCard.style.left = (balloonRect.left + balloonRect.width / 2 - 375) + 'px';
+                } else {
+                    wishCard.style.left = (balloonRect.left + balloonRect.width / 2 - 190) + 'px';
+                }
+                wishCard.style.top = (balloonRect.top + balloonRect.height / 2 - 100) + 'px';
+            }
 
             document.body.appendChild(wishCard);
 
-            // Fade out after 5 seconds
+            
+            if (balloonIndex === 2) {
+               
+                wishCard.offsetHeight;
+                
+                wishCard.style.height = 'auto';
+                wishCard.style.minHeight = 'fit-content';
+            }
+
+          
             setTimeout(() => {
                 wishCard.classList.add('wish-card-fade-out');
                 setTimeout(() => {
@@ -610,50 +1023,27 @@
                         wishCard.parentNode.removeChild(wishCard);
                     }
                 }, 500);
-            }, 5000);
+            }, 10000);
         }
 
         function showGiftWish(giftBoxIndex) {
             const giftWishes = [
                 {
-                    title: "🎁 Birthday Wish Granted! 🎁",
-                    message: "Your birthday wish has been heard by the universe! May it come true in the most magical way!"
+                    title: "🤗 The Hug Attack 🤗",
+                    message: "The very first thing I'll do when I see you hehe squeeze you so tight you'll forget how to breathe (in the best way)."
                 },
                 {
-                    title: "✨ Special Birthday Magic! ✨",
-                    message: "The gift of your birthday has been blessed with extra sparkle and wonder. Enjoy every moment!"
-                },
-                {
-                    title: "🌟 Birthday Dreams Come True! 🌟",
-                    message: "Your birthday is a day of infinite possibilities. May all your heart's desires manifest today!"
+                    title: "💋 The Kiss Flood 💋",
+                    message: "Second thing? Drown you in kisses until you beg me to stop (spoiler: I won't)."
                 }
             ];
 
             const wish = giftWishes[giftBoxIndex % giftWishes.length];
             
-            // Remove any existing cards (both types)
-            const existingWishCard = document.querySelector('.birthday-wish-card');
-            const existingGiftCard = document.querySelector('.gift-wish-card');
             
-            if (existingWishCard) {
-                existingWishCard.classList.add('wish-card-fade-out');
-                setTimeout(() => {
-                    if (existingWishCard.parentNode) {
-                        existingWishCard.parentNode.removeChild(existingWishCard);
-                    }
-                }, 500);
-            }
-            
-            if (existingGiftCard) {
-                existingGiftCard.classList.add('wish-card-fade-out');
-                setTimeout(() => {
-                    if (existingGiftCard.parentNode) {
-                        existingGiftCard.parentNode.removeChild(existingGiftCard);
-                    }
-                }, 500);
-            }
+            closeAllCards();
 
-            // Create new gift wish card
+           
             const wishCard = document.createElement('div');
             wishCard.className = 'gift-wish-card';
             wishCard.innerHTML = `
@@ -661,16 +1051,26 @@
                 <p>${wish.message}</p>
             `;
 
-            // Position the card near the clicked gift box
+          
             const giftBox = document.querySelectorAll('.gift-box')[giftBoxIndex];
             const giftBoxRect = giftBox.getBoundingClientRect();
             
-            wishCard.style.left = (giftBoxRect.left + giftBoxRect.width / 2 - 175) + 'px';
-            wishCard.style.top = (giftBoxRect.top + giftBoxRect.height / 2 - 100) + 'px';
+            
+            if (window.innerWidth <= 768) {
+               
+                wishCard.style.left = '50%';
+                wishCard.style.transform = 'translateX(-50%)';
+                wishCard.style.top = '50%';
+                wishCard.style.transform = 'translate(-50%, -50%)';
+            } else {
+               
+                wishCard.style.left = (giftBoxRect.left + giftBoxRect.width / 2 - 190) + 'px';
+                wishCard.style.top = (giftBoxRect.top + giftBoxRect.height / 2 - 100) + 'px';
+            }
 
             document.body.appendChild(wishCard);
 
-            // Fade out after 5 seconds
+           
             setTimeout(() => {
                 wishCard.classList.add('wish-card-fade-out');
                 setTimeout(() => {
@@ -678,7 +1078,7 @@
                         wishCard.parentNode.removeChild(wishCard);
                     }
                 }, 500);
-            }, 5000);
+            }, 10000);
         }
 
 
