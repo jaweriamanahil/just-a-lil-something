@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="googlebot" content="noindex, nofollow">
     <title>🎂 Happy Birthday! 🎂</title>
     <style>
         * {
@@ -197,10 +199,11 @@
             width: 350px;
             height: auto;
             animation: balloonFloat 8s ease-in-out infinite;
-            z-index: 1;
+            z-index: 10;
             filter: drop-shadow(0 8px 20px rgba(0,0,0,0.4));
             cursor: pointer;
             transition: transform 0.3s ease;
+            pointer-events: auto;
         }
 
         .balloon:hover {
@@ -357,10 +360,11 @@
             width: 120px;
             height: auto;
             animation: giftBoxFloat 6s ease-in-out infinite;
-            z-index: 3;
+            z-index: 10;
             filter: drop-shadow(0 8px 20px rgba(0,0,0,0.2));
             cursor: pointer;
             transition: transform 0.3s ease;
+            pointer-events: auto;
         }
 
         .gift-box:hover {
@@ -775,21 +779,20 @@
                 transform: scale(0.7) !important;
             }
         }
+
+
     </style>
 </head>
 <body>
-   
-            <img src="images/ea9592e8-0557-4c77-b3b3-834a43241125.png" alt="Balloon" class="balloon balloon-1">
+    <div class="container">
+        <!-- Floating Balloons -->
+        <img src="images/ea9592e8-0557-4c77-b3b3-834a43241125.png" alt="Balloon" class="balloon balloon-1">
         <img src="images/ea9592e8-0557-4c77-b3b3-834a43241125.png" alt="Balloon" class="balloon balloon-2">
         <img src="images/ea9592e8-0557-4c77-b3b3-834a43241125.png" alt="Balloon" class="balloon balloon-3">
-    
-   
-            <img src="images/gift box.png" alt="Gift Box" class="gift-box gift-box-1">
+        
+        <!-- Decorative Gift Boxes -->
+        <img src="images/gift box.png" alt="Gift Box" class="gift-box gift-box-1">
         <img src="images/gift box.png" alt="Gift Box" class="gift-box gift-box-2">
-    
-    
-
-        <div class="container">
         <button class="back-icon" onclick="goBack()">😸</button>
         
         <div class="birthday-title">
@@ -822,6 +825,7 @@
             <img src="images/cake 2.png" alt="Birthday Cake" class="cake-image">
         </div>
     
+
     </div>
 
     <script>
@@ -864,18 +868,25 @@
 
        
         document.addEventListener('DOMContentLoaded', () => {
+            console.log('DOM loaded, setting up click events...');
+            
             const balloons = document.querySelectorAll('.balloon');
+            console.log('Found balloons:', balloons.length);
             
             balloons.forEach((balloon, index) => {
                 balloon.addEventListener('click', (e) => {
+                    console.log('Balloon clicked:', index);
                     e.stopPropagation(); 
                     showBirthdayWish(index);
                 });
             });
 
             const giftBoxes = document.querySelectorAll('.gift-box');
+            console.log('Found gift boxes:', giftBoxes.length);
+            
             giftBoxes.forEach((giftBox, index) => {
                 giftBox.addEventListener('click', (e) => {
+                    console.log('Gift box clicked:', index);
                     e.stopPropagation(); 
                     showGiftWish(index);
                 });
@@ -910,6 +921,8 @@
                     giftCard.style.top = '50%';
                 }
             });
+
+
         });
 
         function goBack() {
@@ -919,9 +932,13 @@
             
            
             setTimeout(() => {
-                window.location.href = 'landing.html';
+                window.location.href = 'meow.html';
             }, 500);
         }
+
+
+
+
 
         function closeAllCards() {
             const existingWishCard = document.querySelector('.birthday-wish-card');

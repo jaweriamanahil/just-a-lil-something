@@ -1,0 +1,22 @@
+# Security and privacy
+.env
+*.key
+*.pem
+secrets.txt
+
+# System files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
